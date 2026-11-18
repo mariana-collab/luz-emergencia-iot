@@ -14,8 +14,16 @@ ESP32 (Wokwi) -> EMQX (MQTT) -> função `ingest` (Supabase) -> tabela `leituras
   git config --global user.email "seu-email-do-github"
   ```
 
+## Andamento
+- [x] Etapa 0: repositório criado (público): https://github.com/mariana-collab/luz-emergencia-iot
+- [x] Etapa 1: sensor no Wokwi pronto e commitado na pasta `wokwi/` (falta só ligar o MQTT depois da Etapa 3)
+- [ ] Etapa 2: Supabase (Amanda)
+- [ ] Etapa 3: EMQX (Murilo)
+- [ ] Etapa 4: painel (Isabella)
+- [ ] Etapa 5: testes, vídeo e relatório (todas)
+
 ## Ordem de execução
-1. Mariana cria o repositório (Etapa 0) e o sensor no Wokwi (Etapa 1)
+1. Mariana: repositório (Etapa 0) e sensor no Wokwi (Etapa 1), **já feitos**
 2. Amanda faz o Supabase (Etapa 2)
 3. Murilo faz o EMQX (Etapa 3), que precisa da URL e da chave da Amanda
 4. Isabella faz o painel (Etapa 4), que precisa da URL da API da Amanda
@@ -23,30 +31,36 @@ ESP32 (Wokwi) -> EMQX (MQTT) -> função `ingest` (Supabase) -> tabela `leituras
 
 ---
 
-## Etapa 0 - Mariana: criar o repositório
-1. No GitHub, crie o repositório `luz-emergencia-iot` (público é mais simples).
-2. Na pasta do projeto no computador:
-   ```
-   git init
-   git add .
-   git commit -m "Estrutura inicial do projeto"
-   git branch -M main
-   git remote add origin https://github.com/SEU_USUARIO/luz-emergencia-iot.git
-   git push -u origin main
-   ```
-3. Em Settings > Collaborators, convide Amanda, Isabella e Murilo.
-4. Se o repositório for privado, convide também o professor: `borbavictor`.
-5. Cada integrante clona: `git clone <link do repositório>`.
+## Etapa 0 - Mariana: repositório (CONCLUÍDA)
+O repositório já existe e é público: https://github.com/mariana-collab/luz-emergencia-iot
+Ele contém por enquanto `README.md`, `.gitignore`, `wokwi/` e `docs/PASSO_A_PASSO.md`. As pastas `supabase/` e `frontend/` ainda não estão nele, e cada responsável deve adicioná-las com o próprio commit.
 
-## Etapa 1 - Mariana: sensor no Wokwi (pasta `wokwi/`)
-1. No wokwi.com, abra o projeto e clique em SAVE para criar a sua cópia. Renomeie para "Luz de Emergência IoT".
-2. Cole o `main.py` e o `diagram.json` de `wokwi/` nas abas do projeto.
-3. Rode a simulação e teste: pouca luz acende o LED e muita luz apaga.
-4. Depois que o Murilo passar os dados do EMQX, preencha `MQTT_HOST`, `MQTT_USER` e `MQTT_PASS` só no Wokwi, nunca no GitHub.
-5. Copie o `main.py` e o `diagram.json` finais para `wokwi/` (com os placeholders no lugar das senhas), faça commit e push.
-6. Guarde o link do projeto Wokwi para o relatório.
+**Como cada integrante começa (Amanda, Isabella e Murilo):**
+1. A Mariana convida vocês em Settings > Collaborators. Aceitem o convite que chega por e-mail.
+2. Configure o Git (uma vez só):
+   ```
+   git config --global user.name "Seu Nome"
+   git config --global user.email "seu-email-do-github"
+   ```
+3. Clone o repositório:
+   ```
+   git clone https://github.com/mariana-collab/luz-emergencia-iot.git
+   ```
+4. Crie a sua pasta (se ela não existir), copie para dentro os arquivos que a Mariana enviou e faça:
+   ```
+   git add pasta-da-sua-parte/
+   git commit -m "mensagem clara do que você fez"
+   git pull
+   git push
+   ```
+   Se o Git pedir senha, use um Personal Access Token do GitHub (a senha normal não funciona).
+
+## Etapa 1 - Mariana: sensor no Wokwi (CONCLUÍDA, pasta `wokwi/`)
+O `main.py` e o `diagram.json` já estão commitados em `wokwi/`.
+Pendente só para depois da Etapa 3: preencher `MQTT_HOST`, `MQTT_USER` e `MQTT_PASS` **apenas no Wokwi**, nunca no GitHub, e guardar o link do projeto Wokwi para o relatório.
 
 ## Etapa 2 - Amanda: banco e API no Supabase (pasta `supabase/`)
+0. A Mariana envia para você a pasta `supabase/` (`schema.sql` e `functions/`). Coloque-a dentro do seu clone do repositório e faça o commit dela.
 1. Em supabase.com, crie o projeto `luz-emergencia`.
 2. Em SQL Editor, rode todo o `supabase/schema.sql`.
 3. Em Edge Functions > Secrets, crie `INGEST_KEY` com uma senha longa e envie para o Murilo em mensagem privada.
@@ -77,7 +91,7 @@ ESP32 (Wokwi) -> EMQX (MQTT) -> função `ingest` (Supabase) -> tabela `leituras
 7. Escreva em `docs/emqx.md` o que foi feito (sem senhas), com prints, faça commit e push.
 
 ## Etapa 4 - Isabella: painel web (pasta `frontend/`)
-1. A Claude vai gerar os arquivos do painel em `frontend/` (`index.html`, e assim por diante). Peça à Mariana para passá-los.
+1. A Mariana envia para você os arquivos `index.html` e `config.js`. Coloque-os em uma pasta `frontend/` dentro do seu clone do repositório.
 2. Coloque a URL da `api` da Amanda no arquivo, no campo indicado.
 3. No Cloudflare Pages, crie um projeto conectado ao repositório GitHub, com o diretório de saída `frontend` e sem comando de build.
 4. Teste: o painel deve mostrar o valor atual, a unidade, o horário, o histórico, o alerta e o aviso de dados desatualizados.
@@ -96,7 +110,7 @@ ESP32 (Wokwi) -> EMQX (MQTT) -> função `ingest` (Supabase) -> tabela `leituras
 ## Resumo de quem faz o quê
 | Quem | Parte | Pasta |
 |---|---|---|
-| Mariana | Repositório e sensor no Wokwi | `wokwi/` |
+| Mariana | Repositório e sensor no Wokwi (feito) | `wokwi/` |
 | Amanda | Banco e API no Supabase | `supabase/` |
 | Murilo | Broker MQTT no EMQX | `docs/emqx.md` |
 | Isabella | Painel no Cloudflare Pages | `frontend/` |
