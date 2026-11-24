@@ -1,0 +1,75 @@
+Amanda Villar Moura - Etapa 2 (banco e API no Supabase)
+
+ANTES DE COMECAR
+- Aceite o convite de colaborador do GitHub (chega por e-mail) do repositorio mariana-collab/luz-emergencia-iot.
+- Tenha o Git instalado: https://git-scm.com/download/win
+- Esta pasta (Amanda-supabase) tem a subpasta "supabase", que voce vai adicionar ao repositorio.
+
+============================================================
+CASO A: voce vai usar o SEU computador
+============================================================
+Abra o PowerShell e rode, um bloco por vez (troque o e-mail pelo da sua conta do GitHub):
+
+git config --global user.name "Amanda Villar Moura"
+git config --global user.email "SEU_EMAIL_DO_GITHUB"
+
+cd "$HOME\Documents"
+git clone https://github.com/mariana-collab/luz-emergencia-iot.git
+cd luz-emergencia-iot
+
+Copy-Item -Path "$HOME\Downloads\Amanda-supabase\supabase" -Destination ".\" -Recurse -Force
+git status
+
+git add supabase/schema.sql
+git commit -m "Adiciona schema da tabela leituras no Supabase"
+git add supabase/functions/ingest
+git commit -m "Adiciona funcao ingest (recebe leituras do EMQX)"
+git add supabase/functions/api
+git commit -m "Adiciona funcao api (consulta de leituras por device_id)"
+
+git pull
+git push
+
+git log --format="%h %an <%ae> %s" -4
+
+(Se a pasta Amanda-supabase nao estiver em Downloads, troque o caminho do Copy-Item pelo real.)
+
+============================================================
+CASO B: voce vai usar o computador da MARIANA
+============================================================
+Abra o PowerShell e rode, um bloco por vez:
+
+cd "C:\Users\Interfocus\Downloads\luz-emergencia-iot"
+git pull
+git status
+
+git config --global user.name "Amanda Villar Moura"
+git config --global user.email "SEU_EMAIL_DO_GITHUB"
+
+Copy-Item -Path "C:\Users\Interfocus\Downloads\entrega-grupo\Amanda-supabase\supabase" -Destination "C:\Users\Interfocus\Downloads\luz-emergencia-iot\" -Recurse -Force
+git status
+
+git add supabase/schema.sql
+git commit -m "Adiciona schema da tabela leituras no Supabase"
+git add supabase/functions/ingest
+git commit -m "Adiciona funcao ingest (recebe leituras do EMQX)"
+git add supabase/functions/api
+git commit -m "Adiciona funcao api (consulta de leituras por device_id)"
+
+git pull
+git push
+
+git log --format="%h %an <%ae> %s" -4
+
+DEPOIS, OBRIGATORIO: voltar o Git para a Mariana
+
+git config --global user.name "Mariana da Silva"
+git config --global user.email "marianadasilvap070520@gmail.com"
+git config --global user.name
+
+============================================================
+Se o git push pedir senha: use um Personal Access Token do GitHub
+(Settings > Developer settings > Personal access tokens > Tokens (classic) > marque "repo").
+Se der "rejected ... fetch first": rode git pull e depois git push.
+Confira no GitHub: https://github.com/mariana-collab/luz-emergencia-iot/tree/main/supabase
+Os commits devem aparecer no seu nome.
