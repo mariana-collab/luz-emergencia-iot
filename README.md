@@ -26,7 +26,7 @@ ESP32 (Wokwi) -> EMQX (MQTT/TLS) -> função ingest (Supabase) -> tabela leitura
 - Repositório: https://github.com/mariana-collab/luz-emergencia-iot
 - Projeto Wokwi: https://wokwi.com/projects/481527143544837121
 - Painel: https://luz-de-emergencia.pages.dev/
-- Vídeo: _(preencher)_
+- Vídeo: https://youtu.be/EYRWaTbrPoc
 
 ## Estrutura do banco
 Tabela `public.leituras` (`supabase/schema.sql`):
