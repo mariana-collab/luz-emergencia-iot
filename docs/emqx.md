@@ -11,12 +11,12 @@ Baseado no roteiro da Aula 13, adaptado ao nosso projeto. **Nenhuma senha ou cha
 ## Nomes usados
 | Item | Valor |
 |---|---|
-| Projeto / deployment EMQX | `luz-emergencia` / `luz-deployment` (Serverless) |
+| Projeto / deployment EMQX | `luz-emergencia` / `deployment-n3e18b47` (Serverless) |
 | Usuário MQTT | `esp32_luz01` |
 | Tópico MQTT | `grupo-luz-emergencia/luminosidade` |
-| Conector HTTP | `supabase_http_luz` |
-| Regra | `luminosidade_luz` |
-| Ação | `post_ingest_luz` |
+| Conector HTTP | `c-n3e18b47-6106a1` (nota: `supabase_http_luz`) |
+| Regra | `r-n3e18b47-31be7f` |
+| Ação | `a-n3e18b47-878851` (nota: `supabase_http_luz`) |
 | Função Supabase | `https://adfvywhodqxiigcppdib.supabase.co/functions/v1/ingest` |
 
 ## 1. Broker
@@ -79,3 +79,43 @@ No *Diagnostics > WebSocket Client*, conectar e publicar no tópico acima o JSON
 ## Limitações
 - O WebSocket Client do EMQX usa outro usuário, então a regra *Deny* pode bloquear o teste por ele. Se isso acontecer, teste pelo Wokwi.
 - A cadeia de certificados do Supabase pode mudar. Se houver erro TLS, confira a CA do conector.
+
+## Prints da configuração
+
+Prints do console do EMQX da implantação em uso. Senhas e o valor do header `x-api-key` não aparecem.
+
+### 1. Implantação
+Serverless em execução, com o endereço e a porta MQTT/TLS 8883.
+
+![Deployment Overview](img/01-deployment.png)
+
+### 2. Usuário MQTT
+Usuário `esp32_luz01` em *Access Control > Authentication*.
+
+![Usuário MQTT](img/02-usuario.png)
+
+### 3. Permissão do usuário
+O usuário só pode publicar (**Allow**) no tópico `grupo-luz-emergencia/luminosidade`.
+
+![Permissão do usuário](img/03-permissao-usuario.png)
+
+### 4. Permissão geral
+Regra para todos os usuários: tópico `#`, Publish & Subscribe, **Deny**.
+
+![Permissão geral](img/04-permissao-geral.png)
+
+### 5. Data Integration
+O conector HTTP conectado, a regra habilitada e a ação de envio disponível.
+
+![Data Integration](img/05-integracao.png)
+
+### 6. Conector HTTP
+Conector para a URL base do Supabase, com TLS habilitado.
+
+![Conector HTTP](img/06-conector.png)
+
+### 7. Regra
+SQL que extrai os campos da mensagem publicada no tópico do grupo.
+
+![Regra SQL](img/07-regra.png)
+
