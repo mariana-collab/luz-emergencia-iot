@@ -3,20 +3,327 @@
   "author": "Grupo Luz de Emergencia",
   "editor": "wokwi",
   "parts": [
-    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
-    { "type": "wokwi-photoresistor-sensor", "id": "ldr1", "top": -60, "left": -190, "attrs": {} },
-    { "type": "wokwi-led", "id": "led1", "top": 40, "left": 190, "attrs": { "color": "red" } },
-    { "type": "wokwi-resistor", "id": "r1", "top": 130, "left": 170, "rotate": 90, "attrs": { "value": "220" } }
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr_sala",
+      "top": -440,
+      "left": -260,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_sala",
+      "top": -440,
+      "left": 230,
+      "attrs": {
+        "color": "yellow",
+        "label": "sala"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_sala",
+      "top": -350,
+      "left": 210,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr_cozinha",
+      "top": -300,
+      "left": -260,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_cozinha",
+      "top": -300,
+      "left": 230,
+      "attrs": {
+        "color": "red",
+        "label": "cozinha"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_cozinha",
+      "top": -210,
+      "left": 210,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr_quarto",
+      "top": -160,
+      "left": -260,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_quarto",
+      "top": -160,
+      "left": 230,
+      "attrs": {
+        "color": "green",
+        "label": "quarto"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_quarto",
+      "top": -70,
+      "left": 210,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr_banheiro",
+      "top": -20,
+      "left": -260,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_banheiro",
+      "top": -20,
+      "left": 230,
+      "attrs": {
+        "color": "blue",
+        "label": "banheiro"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_banheiro",
+      "top": 70,
+      "left": 210,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    }
   ],
   "connections": [
-    [ "esp:TX", "$serialMonitor:RX", "", [] ],
-    [ "esp:RX", "$serialMonitor:TX", "", [] ],
-    [ "ldr1:VCC", "esp:3V3", "red", [ "h0" ] ],
-    [ "ldr1:GND", "esp:GND.1", "black", [ "h0" ] ],
-    [ "ldr1:AO", "esp:34", "green", [ "h0" ] ],
-    [ "esp:15", "r1:1", "orange", [ "h0" ] ],
-    [ "r1:2", "led1:A", "orange", [ "h0" ] ],
-    [ "led1:C", "esp:GND.2", "black", [ "h0" ] ]
+    [
+      "esp:TX",
+      "$serialMonitor:RX",
+      "",
+      []
+    ],
+    [
+      "esp:RX",
+      "$serialMonitor:TX",
+      "",
+      []
+    ],
+    [
+      "ldr_sala:VCC",
+      "esp:3V3",
+      "red",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "ldr_sala:GND",
+      "esp:GND.1",
+      "black",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "ldr_sala:AO",
+      "esp:34",
+      "green",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "esp:15",
+      "r_sala:1",
+      "orange",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "r_sala:2",
+      "led_sala:A",
+      "orange",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "led_sala:C",
+      "esp:GND.2",
+      "black",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "ldr_cozinha:VCC",
+      "esp:3V3",
+      "red",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "ldr_cozinha:GND",
+      "esp:GND.1",
+      "black",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "ldr_cozinha:AO",
+      "esp:35",
+      "green",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "esp:2",
+      "r_cozinha:1",
+      "orange",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "r_cozinha:2",
+      "led_cozinha:A",
+      "orange",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "led_cozinha:C",
+      "esp:GND.2",
+      "black",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "ldr_quarto:VCC",
+      "esp:3V3",
+      "red",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "ldr_quarto:GND",
+      "esp:GND.1",
+      "black",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "ldr_quarto:AO",
+      "esp:32",
+      "green",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "esp:4",
+      "r_quarto:1",
+      "orange",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "r_quarto:2",
+      "led_quarto:A",
+      "orange",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "led_quarto:C",
+      "esp:GND.2",
+      "black",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "ldr_banheiro:VCC",
+      "esp:3V3",
+      "red",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "ldr_banheiro:GND",
+      "esp:GND.1",
+      "black",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "ldr_banheiro:AO",
+      "esp:33",
+      "green",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "esp:5",
+      "r_banheiro:1",
+      "orange",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "r_banheiro:2",
+      "led_banheiro:A",
+      "orange",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "led_banheiro:C",
+      "esp:GND.2",
+      "black",
+      [
+        "h0"
+      ]
+    ]
   ],
   "dependencies": {}
 }
